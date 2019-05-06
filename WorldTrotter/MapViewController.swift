@@ -61,13 +61,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         userLocButton.layer.shadowOpacity = 1.0
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("stuff")
-    }
-    
     @IBAction func showUserLocation(_ sender: UIButton) {
-        print("Shit's happeneing")
+        // zoom in the map at user's location
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let currentRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate, span: span)
+        mapView.setRegion(currentRegion, animated: true)
+        print(mapView.userLocation.coordinate)
     }
     
     func mapViewWillStartLocatingUser(_ mapView: MKMapView) {
